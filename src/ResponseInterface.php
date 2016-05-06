@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr\Http\Message;
+namespace Stark\Psr\Http\Message;
 
 /**
  * Representation of an outgoing, server-side response.
