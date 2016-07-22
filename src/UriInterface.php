@@ -204,7 +204,7 @@ interface UriInterface
      * @param null|string $password The password associated with $user.
      * @return self A new instance with the specified user information.
      */
-    public function withUserInfo(string $user, $password = null);
+    public function withUserInfo(string $user, $password = null): UriInterface;
 
     /**
      * Return an instance with the specified host.
@@ -237,7 +237,7 @@ interface UriInterface
      * @return self A new instance with the specified port.
      * @throws \InvalidArgumentException for invalid ports.
      */
-    public function withPort(int $port): UriInterface;
+    public function withPort($port = null): UriInterface;
 
     /**
      * Return an instance with the specified path.
