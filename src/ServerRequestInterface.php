@@ -51,7 +51,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @return array
      */
-    public function getServerParams();
+    public function getServerParams(): array;
 
     /**
      * Retrieve cookies.
@@ -63,7 +63,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @return array
      */
-    public function getCookieParams();
+    public function getCookieParams(): array;
 
     /**
      * Return an instance with the specified cookies.
@@ -80,9 +80,10 @@ interface ServerRequestInterface extends RequestInterface
      * updated cookie values.
      *
      * @param array $cookies Array of key/value pairs representing cookies.
+     *
      * @return self
      */
-    public function withCookieParams(array $cookies);
+    public function withCookieParams(array $cookies): ServerRequestInterface;
 
     /**
      * Retrieve query string arguments.
@@ -96,7 +97,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @return array
      */
-    public function getQueryParams();
+    public function getQueryParams(): array;
 
     /**
      * Return an instance with the specified query string arguments.
@@ -117,10 +118,11 @@ interface ServerRequestInterface extends RequestInterface
      * updated query string arguments.
      *
      * @param array $query Array of query string arguments, typically from
-     *     $_GET.
+     *                     $_GET.
+     *
      * @return self
      */
-    public function withQueryParams(array $query);
+    public function withQueryParams(array $query): ServerRequestInterface;
 
     /**
      * Retrieve normalized file upload data.
@@ -132,9 +134,9 @@ interface ServerRequestInterface extends RequestInterface
      * instantiation, or MAY be injected via withUploadedFiles().
      *
      * @return array An array tree of UploadedFileInterface instances; an empty
-     *     array MUST be returned if no data is present.
+     *               array MUST be returned if no data is present.
      */
-    public function getUploadedFiles();
+    public function getUploadedFiles(): array;
 
     /**
      * Create a new instance with the specified uploaded files.
@@ -144,10 +146,12 @@ interface ServerRequestInterface extends RequestInterface
      * updated body parameters.
      *
      * @param array An array tree of UploadedFileInterface instances.
-     * @return self
+     *
      * @throws \InvalidArgumentException if an invalid structure is provided.
+     *
+     * @return self
      */
-    public function withUploadedFiles(array $uploadedFiles);
+    public function withUploadedFiles(array $uploadedFiles): ServerRequestInterface;
 
     /**
      * Retrieve any parameters provided in the request body.
@@ -162,7 +166,7 @@ interface ServerRequestInterface extends RequestInterface
      * the absence of body content.
      *
      * @return null|array|object The deserialized body parameters, if any.
-     *     These will typically be an array or object.
+     *                           These will typically be an array or object.
      */
     public function getParsedBody();
 
@@ -189,12 +193,14 @@ interface ServerRequestInterface extends RequestInterface
      * updated body parameters.
      *
      * @param null|array|object $data The deserialized body data. This will
-     *     typically be in an array or object.
-     * @return self
+     *                                typically be in an array or object.
+     *
      * @throws \InvalidArgumentException if an unsupported argument type is
-     *     provided.
+     *                                   provided.
+     *
+     * @return self
      */
-    public function withParsedBody($data);
+    public function withParsedBody($data): ServerRequestInterface;
 
     /**
      * Retrieve attributes derived from the request.
@@ -207,7 +213,7 @@ interface ServerRequestInterface extends RequestInterface
      *
      * @return array Attributes derived from the request.
      */
-    public function getAttributes();
+    public function getAttributes(): array;
 
     /**
      * Retrieve a single derived request attribute.
@@ -220,11 +226,13 @@ interface ServerRequestInterface extends RequestInterface
      * specifying a default value to return if the attribute is not found.
      *
      * @see getAttributes()
-     * @param string $name The attribute name.
-     * @param mixed $default Default value to return if the attribute does not exist.
+     *
+     * @param string $name    The attribute name.
+     * @param mixed  $default Default value to return if the attribute does not exist.
+     *
      * @return mixed
      */
-    public function getAttribute($name, $default = null);
+    public function getAttribute(string $name, $default = null);
 
     /**
      * Return an instance with the specified derived request attribute.
@@ -237,11 +245,13 @@ interface ServerRequestInterface extends RequestInterface
      * updated attribute.
      *
      * @see getAttributes()
-     * @param string $name The attribute name.
-     * @param mixed $value The value of the attribute.
+     *
+     * @param string $name  The attribute name.
+     * @param mixed  $value The value of the attribute.
+     *
      * @return self
      */
-    public function withAttribute($name, $value);
+    public function withAttribute(string $name, $value): ServerRequestInterface;
 
     /**
      * Return an instance that removes the specified derived request attribute.
@@ -254,8 +264,10 @@ interface ServerRequestInterface extends RequestInterface
      * the attribute.
      *
      * @see getAttributes()
+     *
      * @param string $name The attribute name.
+     *
      * @return self
      */
-    public function withoutAttribute($name);
+    public function withoutAttribute(string $name): ServerRequestInterface;
 }
