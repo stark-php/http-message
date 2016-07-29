@@ -17,5 +17,8 @@
         "psr-4": {
             "Stark\\Psr\\Http\\Message\\": "src/"
         }
+    },
+    "require": {
+        "php": "~7.0"
     }
 }
